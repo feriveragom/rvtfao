@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <main className="flex h-[calc(100vh-(8rem))]">
+      <main className="flex h-[calc(100vh-(7.55rem))]">
         <Routes>
           <Route path="/" element={<Body />} />
           <Route path="/about" element={<About />} />
