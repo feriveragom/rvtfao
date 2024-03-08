@@ -9,7 +9,7 @@ export default {
       colors: {
         brand: "#FD4F00",
         primary: "#8fc600",
-        phover: "#6aa84f",
+        phover: "#8fc600cc",
         fdox: {
           gray: {
             light: "#cccccc",
