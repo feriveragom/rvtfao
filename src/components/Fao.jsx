@@ -124,10 +124,10 @@ function Fao() {
                   name="serie"
                   id="serie"
                   autoComplete="given-name"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="pl-1 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
-              {errors.serie && <p className="error text-red-500">El número de serie de cédula es obligatorio</p>}
+              {errors.serie && <p className="error text-red-500">Campo requerido</p>}
             </div>
             <div className="col-span-1">
               <label htmlFor="telefono" className="block text-sm italic leading-6 text-gray-900">
@@ -138,15 +138,15 @@ function Fao() {
                   <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">+56</span>
                   <input
                     {...register("telefono", { required: true })}
-                    type="text"
+                    type="number"
                     name="telefono"
                     id="telefono"
                     autoComplete="telefono"
-                    className="block flex-1 border-0 bg-transparent py-1.5 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    className="pl-1 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder=""
                   />
                 </div>
-                {errors.telefono && <p className="error text-red-500">El teléfono es obligatorio</p>}
+                {errors.telefono && <p className="error text-red-500">Campo requerido</p>}
               </div>
             </div>
           </div>
