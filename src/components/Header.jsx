@@ -9,7 +9,7 @@ import { Dialog, Transition } from '@headlessui/react'
 
 import imgClave from "./../assets/clave_unica_color.7d8e1b56a097.svg";
 
-function classNames(...classes) {
+function Names(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -48,7 +48,7 @@ function Header() {
                     <div className="mt-3 text-center sm:mt-5">
                       <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
                         <div className="mx-auto flex items-center justify-center text-gray-500">
-                          Ingrese a
+                         Autentícate con
                         </div>
                         <div className="mx-auto flex items-center justify-center">
                           <img className="" src={imgClave} alt="..." />
@@ -56,18 +56,18 @@ function Header() {
                       </Dialog.Title>
                       <div className="">
                         <p className="text-sm text-gray-500">
-                          Comienza el proceso de compra de firma avanzada online autenticándote con tu clave única.
+                          Comienza el proceso de compra de Firma Avanzada Online.
                         </p>
                       </div>
                     </div>
                   </div>
-                  <div className="mt-10">
+                  <div className="mt-5 mx-20">
                     <a
                       href="https://accounts.claveunica.gob.cl/accounts/login/?next=/openid/authorize/%3Fclient_id%3D9a76efc4c34e4bd7843206658dc45454%26response_type%3Dcode%26scope%3Dopenid%2Brun%2Bname%26redirect_uri%3Dhttps%253A%252F%252Fclaveunica.gob.cl%252Fauth%252Fcallbacklogin%26state%3DqPTpVqUNT208ffeDX2F5I_fqJK8"
                       className="inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       onClick={() => setOpen(false)}
                     >
-                      Ingresar a Clave Única
+                      Ingresar
                     </a>
                   </div>
                 </Dialog.Panel>
@@ -76,18 +76,18 @@ function Header() {
           </div>
         </Dialog>
       </Transition.Root>
-      <nav class="border-b-4 border-primary shadow-md shadow-fdox-gray-light/70">
-        <div class="px-4 sm:px-6 lg:px-8">
-          <div class="flex h-16 justify-between">
-            <div class="flex">
-              <div class="flex flex-shrink-0 items-center">
+      <nav className="border-b-4 border-primary shadow-md shadow-fdox-gray-light/70">
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 justify-between">
+            <div className="flex">
+              <div className="flex flex-shrink-0 items-center">
                 <Link to="/">
                   <img className="h-8" src="./firmadox.png" alt="Mi imagen" />
                 </Link>
               </div>
             </div>
-            <div class="hidden sm:ml-6 sm:flex sm:items-center sm:justify-end ">
-              <div class="flex items-center justify-end space-x-5">
+            <div className="hidden sm:ml-6 sm:flex sm:items-center sm:justify-end ">
+              <div className="flex items-center justify-end space-x-5">
 
                 <Link to="/fao" className="p-1 border border-primary rounded-lg">
                   redirect FAO
@@ -122,10 +122,10 @@ function Header() {
                                 'block px-4 py-2 text-sm cursor-pointer'
                               )}
                             >
-                              <div class="text-sm font-semibold leading-6 text-gray-900 group-hover:text-indigo-500" aria-hidden="true">
+                              <div className="text-sm font-semibold leading-6 text-gray-900 group-hover:text-indigo-500" aria-hidden="true">
                                 Firma avanzada Online
                               </div>
-                              <div class="mt-0.5 text-xs font-light italic leading-5 text-gray-500">Firma de manera segura y con validez jurídica</div>
+                              <div className="mt-0.5 text-xs font-light italic leading-5 text-gray-500">Firma de manera segura y con validez jurídica</div>
                             </span>
                           )}
                         </Menu.Item>
@@ -134,9 +134,9 @@ function Header() {
                   </Transition>
                 </Menu>
 
-                <a href="https://canary-web.albertcs.com/auth?redirect=https://rvtfao.vercel.app/" class="text-fdox-gray-dark/80 hover:text-fdox-gray-dark inline-flex items-center justify-center px-2.5 py-1.5 text-sm font-medium group border border-primary rounded-lg" data-phx-id="m4-phx-F7rT1wh1dkPYB0py">
+                <a href="https://canary-web.albertcs.com/auth?redirect=https://rvtfao.vercel.app/" className="text-fdox-gray-dark/80 hover:text-fdox-gray-dark inline-flex items-center justify-center px-2.5 py-1.5 text-sm font-medium group border border-primary rounded-lg" data-phx-id="m4-phx-F7rT1wh1dkPYB0py">
                   <UserCircleIcon  className="h-6 w-6" />
-                  <span class="mb-0.5">Acceder</span>
+                  <span className="mb-0.5">Acceder</span>
                 </a>
               </div>
             </div>
