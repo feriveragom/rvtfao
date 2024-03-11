@@ -11,7 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <main className="flex h-[calc(100vh-(8rem))]">
+      <main className="h-full">
         <Routes>
           <Route path="/" element={<Body />} />
           <Route path="/fao" element={<Fao />} />
