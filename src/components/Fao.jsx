@@ -9,6 +9,7 @@ import Steps from "./Steps"
 import TermCond from './TermCond'
 import SwitchC from './SwitchC'
 import PlanList from './PlanList';
+import { Step1, Step2, Step3, Step4 } from './EachStep';
 
 const mailingLists = [
   { id: 1, title: 'Un uso', description: '', price: '$8.000' },
@@ -26,14 +27,12 @@ function Fao() {
   const [selectedMailingLists, setSelectedMailingLists] = useState(mailingLists[0])
   const [open, setOpen] = useState(false)
   const [enabled, setEnabled] = useState(false)
+  const [serie, setSerie] = useState(12345)
+  const [telefono, setTelefono] = useState(67890)
+  const [email, setEmail] = useState("aaa@aa.aa")
   const [submitted, setSubmitted] = useState(false)
 
-  const [steps, setSteps] = useState([
-    { name: 'Solicitud de compra', description: 'Ingrese los datos personales', href: '#', status: 'current', id: "1" },
-    { name: 'Pago de firma', description: 'Pago en línea del producto', href: '#', status: 'upcoming', id: "2" },
-    { name: 'Validar identidad', description: 'Validación de la identidad', href: '#', status: 'upcoming', id: "3" },
-    { name: 'Generar certificado', description: 'Generación del certificado', href: '#', status: 'upcoming', id: "4" }
-  ])
+  const [steps, setSteps] = useState(Step1)
 
   const onSubmit = (data) => {
     setSubmitted(true)
@@ -41,12 +40,7 @@ function Fao() {
 
     if (enabled) {
       // TODO
-      setSteps([
-        { name: 'Solicitud de compra', description: 'Ingrese los datos personales', href: '#', status: 'complete', id: "1" },
-        { name: 'Pago de firma', description: 'Pago en línea del producto', href: '#', status: 'current', id: "2" },
-        { name: 'Validar identidad', description: 'Validación de la identidad', href: '#', status: 'upcoming', id: "3" },
-        { name: 'Generar certificado', description: 'Generación del certificado', href: '#', status: 'upcoming', id: "4" }
-      ])
+      setSteps(Step2)
 
 
     }
@@ -90,6 +84,7 @@ function Fao() {
                     type="text"
                     name="serie"
                     id="serie"
+                    value={serie}
                     autoComplete="given-name"
                     className="pl-1 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
@@ -108,6 +103,7 @@ function Fao() {
                       type="number"
                       name="telefono"
                       id="telefono"
+                      value={telefono}
                       autoComplete="telefono"
                       className="pl-1 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder=""
@@ -127,6 +123,7 @@ function Fao() {
                       type="email"
                       name="email"
                       id="email"
+                      value={email}
                       className="pl-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
@@ -156,18 +153,78 @@ function Fao() {
   }
 
   const step2 = () => {
-    <></>
+    return (
+      <div className="col-span-3 p-10">
+        <div className="flex justify-between">
+          <button
+            type="button"
+            onClick={() => setSteps(Step1)}
+            className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
+          >
+            Anterior
+          </button>
+          <button
+            type="button"
+            onClick={() => setSteps(Step3)}
+            className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
+          >
+            Siguiente
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  const step3 = () => {
+    return (
+      <div className="col-span-3 p-10">
+        <div className="flex justify-between">
+          <button
+            type="button"
+            onClick={() => setSteps(Step2)}
+            className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
+          >
+            Anterior
+          </button>
+          <button
+            type="button"
+            onClick={() => setSteps(Step4)}
+            className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
+          >
+            Siguiente
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  const step4 = () => {
+    return (
+      <div className="col-span-3 p-10">
+        <div className="flex justify-between">
+          <button
+            type="button"
+            onClick={() => setSteps(Step3)}
+            className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
+          >
+            Anterior
+          </button>
+        </div>
+      </div>
+    )
   }
 
   const current_col_span_3 = () => {
     let elem = steps.filter((step) => step.status == 'current')
-    console.log(elem)
     switch (elem[0].id) {
       case "1":
         return step1()
       case "2":
         return step2()
-
+      case "3":
+        return step3()
+      case "4":
+        return step4()
       default:
         return <></>
     }

@@ -16,7 +16,7 @@ function Steps({steps}) {
                 {stepIdx !== steps.length - 1 ? (
                   <div className="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-primary" aria-hidden="true" />
                 ) : null}
-                <a href={step.href} className="group relative flex items-start">
+                <a className="group relative flex items-start cursor-pointer">
                   <span className="flex h-9 items-center">
                     <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-primary group-hover:bg-phover">
                       <CheckIcon className="h-5 w-5 text-white" aria-hidden="true" />
@@ -33,7 +33,7 @@ function Steps({steps}) {
                 {stepIdx !== steps.length - 1 ? (
                   <div className="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-gray-300" aria-hidden="true" />
                 ) : null}
-                <a href={step.href} className="group relative flex items-start" aria-current="step">
+                <a className="group relative flex items-start cursor-pointer" aria-current="step">
                   <span className="flex h-9 items-center" aria-hidden="true">
                     <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-white text-primary">
                       {step.id}
@@ -50,7 +50,7 @@ function Steps({steps}) {
                 {stepIdx !== steps.length - 1 ? (
                   <div className="absolute left-4 top-4 -ml-px mt-0.5 h-full w-0.5 bg-gray-300" aria-hidden="true" />
                 ) : null}
-                <a href={step.href} className="group relative flex items-start">
+                <a className="group relative flex items-start cursor-pointer">
                   <span className="flex h-9 items-center" aria-hidden="true">
                     <span className="relative z-10 flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-300 bg-white group-hover:border-gray-400 text-gray-400">
                       {step.id}
