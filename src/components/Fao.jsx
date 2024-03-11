@@ -114,7 +114,7 @@ function Fao() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid grid-cols-2 gap-4 mt-2">
             <div className="col-span-1">
-              <label htmlFor="serie" className="block text-sm italic leading-6 text-gray-900">
+              <label title='Este campo es requerido para validar la vigencia de tu documento de identidad' htmlFor="serie" className="block text-sm italic leading-6 text-gray-900">
                 No de Serie de Cédula
               </label>
               <div className="mt-2">
