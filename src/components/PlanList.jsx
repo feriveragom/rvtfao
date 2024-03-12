@@ -8,7 +8,7 @@ function classNames(...classes) {
 function PlanList({selectedMailingLists, setSelectedMailingLists, mailingLists}) {
   return (
     <RadioGroup className="" value={selectedMailingLists} onChange={setSelectedMailingLists}>
-            <RadioGroup.Label className="text-base font-semibold leading-6 text-gray-900">
+            <RadioGroup.Label className="text-base font-semibold leading-6 text-gray-600">
               Seleccione su Plan
             </RadioGroup.Label>
             <div className="mt-5 grid grid-cols-4 gap-x-4">

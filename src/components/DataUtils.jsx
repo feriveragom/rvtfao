@@ -34,3 +34,11 @@ export function Step4() {
     { name: 'Generar certificado', description: 'Generación del certificado', status: 'current', id: "4" }
   ]
 }
+
+export const includedFeatures1 = [
+  'Pagando con transferencia validamos tu identidad de manera automática.'
+]
+
+export const includedFeatures2 = [
+  'Validamos tu identidad a través de preguntas personales.',
+]
