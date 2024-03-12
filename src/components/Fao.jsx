@@ -18,10 +18,6 @@ const mailingLists = [
   { id: 4, title: '3 años', description: '', price: '$20.150' },
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 function Fao() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [selectedMailingLists, setSelectedMailingLists] = useState(mailingLists[0])

@@ -9,7 +9,7 @@ import { Dialog, Transition } from '@headlessui/react'
 
 import imgClave from "./../assets/clave_unica_color.7d8e1b56a097.svg";
 
-function Names(...classes) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
