@@ -3,9 +3,9 @@ import { useState } from 'react'
 import Steps from "./Steps"
 import TermCond from './TermCond'
 
-import { Step1, Step2, Step3, Step4, includedFeatures1, includedFeatures2 } from './DataUtils';
+import { stepc1, stepc2, stepc3, stepc4, includedFeatures1, includedFeatures2 } from './DataUtils';
 import Maqueta1 from './Maqueta1';
-import Tarjeta from './Tarjeta';
+import Informacion from './Informacion';
 import Secciones from './Secciones';
 
 const mailingLists = [
@@ -21,8 +21,8 @@ function Fao() {
   const [open, setOpen] = useState(false)
   const [enabled, setEnabled] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-  const [codigo, setCodigo] = useState(Step2)
-  const [steps, setSteps] = useState(Step2)
+  const [codigo, setCodigo] = useState("")
+  const [steps, setSteps] = useState(stepc2)
 
   const onSubmit = (data) => {
     setSubmitted(true)
@@ -30,9 +30,7 @@ function Fao() {
 
     if (enabled) {
       // TODO
-      setSteps(Step2)
-
-
+      setSteps(stepc2)
     }
   };
 
@@ -46,27 +44,27 @@ function Fao() {
   const step2 = () => {
     return (
       <div className="col-span-3 p-10 space-y-10">
-        <Tarjeta name="Precio del producto" codigo={codigo} onSubmit2={onSubmit2} selectedMailingLists={selectedMailingLists} />
-        <div className='grid grid-cols-2 gap-4'>
-          <div className='col-span-1'><Secciones title="Transferencia" subtitle="(Khipu)" description={desc} includedFeatures={includedFeatures1} /></div>
-          <div className='col-span-1'><Secciones title="Tarjetas de crédito y débito" subtitle="(FLOW)" description={desc} includedFeatures={includedFeatures2} /></div>
+        <Informacion codigo={codigo} onSubmit2={onSubmit2} selectedMailingLists={selectedMailingLists} />
+        <div className='flex space-x-20 px-10 justify-center'>
+          <Secciones title="Transferencia" subtitle="(Khipu)" description={desc} includedFeatures={includedFeatures1} />
+          <Secciones title="Tarjetas de crédito y débito" subtitle="(FLOW)" description={desc} includedFeatures={includedFeatures2} />
         </div>
         <div className="flex justify-between">
           {/* <div></div> */}
-          <button
+          {/* <button
             type="button"
-            onClick={() => setSteps(Step1)}
+            onClick={() => setSteps(stepc1)}
             className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
           >
             Anterior
           </button>
           <button
             type="button"
-            onClick={() => setSteps(Step3)}
+            onClick={() => setSteps(stepc3)}
             className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
           >
             Siguiente
-          </button>
+          </button> */}
         </div>
       </div>
     )
@@ -78,14 +76,14 @@ function Fao() {
         <div className="flex justify-between">
           <button
             type="button"
-            onClick={() => setSteps(Step2)}
+            onClick={() => setSteps(stepc2)}
             className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
           >
             Anterior
           </button>
           <button
             type="button"
-            onClick={() => setSteps(Step4)}
+            onClick={() => setSteps(stepc4)}
             className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
           >
             Siguiente
@@ -101,7 +99,7 @@ function Fao() {
         <div className="flex justify-between">
           <button
             type="button"
-            onClick={() => setSteps(Step3)}
+            onClick={() => setSteps(stepc3)}
             className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
           >
             Anterior

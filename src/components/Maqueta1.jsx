@@ -57,7 +57,7 @@ function Maqueta1({ selectedMailingLists, setSelectedMailingLists, mailingLists,
                   <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">+56</span>
                   <input
                     {...register("telefono", { required: true })}
-                    type="number"
+                    type="text"
                     name="telefono"
                     id="telefono"
                     autoComplete="telefono"

@@ -2,10 +2,10 @@ import { CheckIcon } from '@heroicons/react/20/solid'
 
 export default function Example({title, subtitle, description, includedFeatures}) {
   return (
-    <div className="rounded-3xl ring-1 ring-gray-200">
+    <div className="rounded-3xl ring-1 ring-primary hover:ring-phover w-80">
       <div className="p-10">
         <h3 className="text-2xl font-bold tracking-tight text-gray-600">{title}</h3>
-        <a href='#' className="text-2xl font-bold tracking-tight flex flex-col text-end text-primary hover:underline">{subtitle}</a>
+
         <p className="mt-6 text-base leading-7 text-gray-600">
           {description}
         </p>
@@ -25,6 +25,7 @@ export default function Example({title, subtitle, description, includedFeatures}
           ))}
         </ul>
       </div>
+      <a href='#' className="text-2xl pb-5 font-bold tracking-tight flex flex-col text-center text-primary hover:underline">{subtitle}</a>
     </div>
   )
 }
