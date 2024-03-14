@@ -24,7 +24,7 @@ function Fao() {
   const [enabled, setEnabled] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [codigo, setCodigo] = useState("")
-  const [steps, setSteps] = useState(stepc2)
+  const [steps, setSteps] = useState(stepc1)
   const [payState, setPayState] = useState('');
 
   const successKhipuPayState = () => {
