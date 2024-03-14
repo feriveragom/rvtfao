@@ -9,6 +9,7 @@ export default function Informacion({ codigo, onSubmit2, selectedMailingLists })
       <div className='col-span-2'>
         <p className="text-base text-gray-500 mb-2">{selectedMailingLists ? "Ha seleccionado Firma Avanzada Online con vigencia de: " : ""}</p>
         <p className='text-gray-500 font-semibold text-xl text-center'>{selectedMailingLists ? selectedMailingLists.title : ""}</p>
+        <p className="text-base text-gray-500 mb-2">{selectedMailingLists ? "Valor: " + selectedMailingLists.price : ""}</p>
         <form onSubmit={handleSubmit(onSubmit2)} className="grid grid-cols-4 gap-4 ">
           <div className='col-span-2'>
             <label title='Este campo es requerido para validar la vigencia de tu documento de identidad' htmlFor="serie" className="block text-sm font-medium leading-6 text-gray-900">
@@ -36,8 +37,13 @@ export default function Informacion({ codigo, onSubmit2, selectedMailingLists })
           </div>
         </form>
       </div>
-      <div className="col-span-1 flex flex-col justify-center text-start text-3xl font-semibold tracking-tight text-gray-600">
-          {selectedMailingLists ? selectedMailingLists.price + " CPL" : ""}
+      <div className="col-span-1 flex flex-col justify-center text-start text-3xl font-base tracking-tight text-gray-600">
+        <div className="text-base text-gray-500">
+            {selectedMailingLists ? "Monto a pagar: " : ""}
+        </div>
+        <div className="">
+            {selectedMailingLists ? selectedMailingLists.price + " CPL" : ""}
+        </div>
       </div>
     </div>
 

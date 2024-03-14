@@ -2,13 +2,13 @@
 import { useState, useEffect } from 'react'
 import Steps from "./Steps"
 import TermCond from './TermCond'
-import { CheckCircleIcon } from '@heroicons/react/24/solid'
-import { CheckIcon } from '@heroicons/react/20/solid'
+import { CheckIcon, XMarkIcon } from '@heroicons/react/20/solid'
 
 import { stepc1, stepc2, stepc3, stepc4, includedFeatures1, includedFeatures2 } from './DataUtils';
 import Maqueta1 from './Maqueta1';
 import Informacion from './Informacion';
 import Secciones from './Secciones';
+import UnderConstruction from './UnderConstruction';
 
 const mailingLists = [
   { id: 1, title: 'Un uso', description: '', price: '$8.000' },
@@ -24,13 +24,39 @@ function Fao() {
   const [enabled, setEnabled] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [codigo, setCodigo] = useState("")
-  const [steps, setSteps] = useState(stepc1)
+  const [steps, setSteps] = useState(stepc2)
   const [payState, setPayState] = useState('');
 
-  const pagadoPayState = () => {
+  const successKhipuPayState = () => {
     const timeout = setTimeout(() => {
-      setPayState('PAGADO');
-    }, 3000);
+      setPayState('SUCCESS_KHIPU');
+      const timeout1 = setTimeout(() => {
+        setSteps(stepc4)
+      }, 4000);
+      return () => clearTimeout(timeout1);
+    }, 100);
+    return () => clearTimeout(timeout);
+  }
+
+  const errorKhipuPayState = () => {
+    const timeout = setTimeout(() => {
+      setPayState('ERROR_KHIPU');
+      const timeout1 = setTimeout(() => {
+        setSteps(stepc3)
+      }, 4000);
+      return () => clearTimeout(timeout1);
+    }, 100);
+    return () => clearTimeout(timeout);
+  }
+
+  const successFlowPayState = () => {
+    const timeout = setTimeout(() => {
+      setPayState('SUCCESS_FLOW');
+      const timeout1 = setTimeout(() => {
+        setSteps(stepc3)
+      }, 4000);
+      return () => clearTimeout(timeout1);
+    }, 4000);
     return () => clearTimeout(timeout);
   }
 
@@ -52,14 +78,13 @@ function Fao() {
     switch (e.target.name) {
       case "KHIPU":
         const timeoutKHIPU = setTimeout(() => {
-          setPayState('KHIPU');
-          pagadoPayState()
+          setPayState('KHIPU')
         }, 100);
         return () => clearTimeout(timeoutKHIPU);
       case "FLOW":
         const timeoutFLOW = setTimeout(() => {
-          setPayState('FLOW');
-          pagadoPayState()
+          setPayState('FLOW')
+          successFlowPayState()
         }, 100);
         return () => clearTimeout(timeoutFLOW);
       default:
@@ -81,7 +106,35 @@ function Fao() {
     )
   }
 
-  const step2Waiting = () => {
+  const step2Khipu = () => {
+    return (
+      <div className="col-span-3 pr-10">
+        <div className='flex justify-center items-center pt-10 pb-5'>
+            <svg aria-hidden="true" class="w-20 h-20 text-gray-200 animate-spin dark:text-gray-600 fill-primary" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+            </svg>
+        </div>
+        <div className='flex justify-center items-center pb-5'>
+          <button
+            type="button"
+            className="space-y-2 block w-2/3 rounded-lg border-2 border-dashed border-gray-300 p-5 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          >
+            <span className="block text-xl font-semibold text-gray-600">{ payState}</span>
+            <span className="block text-xl font-semibold text-gray-600">Estamos esperando la notificación del pago</span>
+            <span className="block text-sm font-base text-gray-900">En instantes podrás continuar con el proceso de compra</span>
+            <span className="block text-sm font-base text-gray-900">Espere unos minutos por favor</span>
+            <span className="text-sm font-base text-gray-900 flex justify-end space-x-2">
+              <CheckIcon className="h-8 w-8 flex-none text-primary hover:text-phover" aria-hidden="true" onClick={() => successKhipuPayState()} />
+              <XMarkIcon className="h-8 w-8 flex-none text-red-500 hover:text-red-400 " aria-hidden="true" onClick={() => errorKhipuPayState()} />
+            </span>
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  const step2Flow = () => {
     return (
       <div className="col-span-3 pr-10">
         <div className='flex justify-center items-center pt-10'>
@@ -105,7 +158,7 @@ function Fao() {
     )
   }
 
-  const step2Pagado = () => {
+  const successKhipu = () => {
     return (
       <div className="col-span-3 pr-10">
         <div className='flex justify-center items-center pt-10'>
@@ -117,17 +170,46 @@ function Fao() {
             className=" block w-2/3 rounded-lg border-2 border-dashed border-gray-300 p-5 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             <span className="mt-2 block text-xl font-semibold text-gray-600">{ payState}</span>
-            <span className="mt-2 block text-xl font-semibold text-gray-600">Tu pago ha sido exitodso y hemos validado tu identidad</span>
+            <span className="mt-2 block text-xl font-semibold text-gray-600">Tu pago ha sido exitoso y hemos validado tu identidad</span>
           </button>
         </div>
-        <div className="flex justify-between pb-5">
-          <div></div>
+      </div>
+    )
+  }
+
+  const errorKhipu = () => {
+    return (
+      <div className="col-span-3 pr-10">
+        <div className='flex justify-center items-center pt-10'>
+          <XMarkIcon className="h-20 w-20 flex-none text-red-500" aria-hidden="true" />
+        </div>
+        <div className='flex justify-center items-center h-48'>
           <button
             type="button"
-            onClick={() => setSteps(stepc3)}
-            className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-phover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-phover"
+            className=" block w-2/3 rounded-lg border-2 border-dashed border-gray-300 p-5 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
-            Siguiente
+            <span className="mt-2 block text-xl font-semibold text-gray-600">{ payState}</span>
+            <span className="mt-2 block text-xl font-semibold text-gray-600">Tu pago ha sido exitoso</span>
+            <span className="mt-2 block text-base font-medium text-gray-900">No pudimos validar tu identidad de manera automática. No te preocupes, lo haremos con preguntas personales</span>
+          </button>
+        </div>
+      </div>
+    )
+  }
+
+  const successFlow = () => {
+    return (
+      <div className="col-span-3 pr-10">
+        <div className='flex justify-center items-center pt-10'>
+          <CheckIcon className="h-20 w-20 flex-none text-primary" aria-hidden="true" />
+        </div>
+        <div className='flex justify-center items-center h-48'>
+          <button
+            type="button"
+            className=" block w-2/3 rounded-lg border-2 border-dashed border-gray-300 p-5 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          >
+            <span className="mt-2 block text-xl font-semibold text-gray-600">{ payState}</span>
+            <span className="mt-2 block text-xl font-semibold text-gray-600">Tu pago ha sido exitoso</span>
           </button>
         </div>
       </div>
@@ -137,6 +219,7 @@ function Fao() {
   const step3 = () => {
     return (
       <div className="col-span-3 p-10">
+        <UnderConstruction title="Validar Identidad" />
         <div className="flex justify-between">
           <button
             type="button"
@@ -163,6 +246,7 @@ function Fao() {
   const step4 = () => {
     return (
       <div className="col-span-3 p-10">
+        <UnderConstruction title="Generar Certificado" />
         <div className="flex justify-between">
           <button
             type="button"
@@ -181,25 +265,32 @@ function Fao() {
     switch (elem[0].id) {
       case "1":
         return <Maqueta1
-          selectedMailingLists={selectedMailingLists}
-          setSelectedMailingLists={setSelectedMailingLists}
-          mailingLists={mailingLists}
-          run={"99999999-9"}
-          nombres={"nombres"}
-          apellidos={"apellidos"}
-          onSubmit={onSubmit}
-          enabled={enabled}
-          setEnabled={setEnabled}
-          submitted={submitted}
-          setOpen={setOpen} />
+            selectedMailingLists={selectedMailingLists}
+            setSelectedMailingLists={setSelectedMailingLists}
+            mailingLists={mailingLists}
+            run={"99999999-9"}
+            nombres={"nombres"}
+            apellidos={"apellidos"}
+            onSubmit={onSubmit}
+            enabled={enabled}
+            setEnabled={setEnabled}
+            submitted={submitted}
+            setOpen={setOpen}
+          />
       case "2":
         switch (payState) {
-          case "":
-            return step2First()
-          case "PAGADO":
-            return step2Pagado()
+          case "KHIPU":
+            return step2Khipu()
+          case "FLOW":
+            return step2Flow()
+          case "SUCCESS_KHIPU":
+            return successKhipu()
+          case "ERROR_KHIPU":
+            return errorKhipu()
+          case "SUCCESS_FLOW":
+            return successFlow()
           default:
-            return step2Waiting()
+            return step2First()
         }
       case "3":
         return step3()
